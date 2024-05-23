@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- For different css styles -->
+    <script type='text/javascript' src='js/x3dom.js'></script> 
+    <link rel='stylesheet' type='text/css' href='css/x3dom.css'>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-free-6.5.1-web/css/all.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <title>Coca Cola 3D App Template</title>
+</head>
+
+<body>
+    <!-- For the Header -->
+    <nav class="navbar sticky-top navbar-expand-sm navbar_coca_cola">
+        <div class="container-fluid">
+            <div class="logo">
+                <a class="navbar-brand" href="index.html">
+                    <h1>1</h1>
+                    <h1>oca</h1>
+                    <h2>Cola</h2>
+                    <h3>Journey</h3>
+                    <p>Refreshing the world, one story at a time</p>
+                </a>
+            </div>
+
+            <!-- Collapsible Navbar Menu Icon -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" title="About Popover Header" data-target="#aboutModal">About</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Drinks</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="coke.html">Coca Cola</a>
+                            <a class="dropdown-item" href="sprite.html">Sprite</a>
+                            <a class="dropdown-item" href="pepper.html">Dr Pepper</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" title="Popover Header" data-target="#contactModal">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid main_contents">
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="card text-left">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="coke.html">Coke</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="sprite.html">Sprite</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pepper.html">Dr. Pepper</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- For the Main Image -->
+                    <div class="container">
+                        <div class="card-body">
+                            <h4 class="card-title">Coke X3D Model</h4>
+                            <div class="model3D">
+                                <x3d id="x3dElement" width='600px' height='400px'>
+                                    <scene>
+                                        <transform DEF="rotatingTransform">
+                                            <inline url="assets/x3d/CocaCola.x3d"></inline>
+                                        </transform>
+                                        <TimeSensor DEF="clock" id="clock" cycleInterval="5" loop="true"></TimeSensor>
+                                        <OrientationInterpolator DEF="spinningInterpolator" key="0 0.5 1" keyValue="0 1 0 0 0 1 0 3.14 0 1 0 6.28"></OrientationInterpolator>
+                                        <ROUTE fromNode="clock" fromField="fraction_changed" toNode="spinningInterpolator" toField="set_fraction"></ROUTE>
+                                        <ROUTE fromNode="spinningInterpolator" fromField="value_changed" toNode="rotatingTransform" toField="set_rotation"></ROUTE>
+                                    </scene>
+                                </x3d> 
+                            </div>
+                    </div>
+
+                        <p class="card-text">This X3D model of the Coke can has been created in 3ds Max, exported to VRML97 and
+                            converted, using the instantreality transcoders, to X3D for display online.</p>
+                        <h5 class="card-subtitle">Camera Views</h5>
+                        <div class="camera-btns">
+                            <p>A range of X3D model viewpoints</p>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
+                                <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
+                                <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
+                                <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
+                                <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
+                                <button class="btn btn-info btn-responsive camera-font" id="animationButton" onclick="toggleRotation()">Animate</button>
+                                <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3D Image Gallery -->
+            <div class="col-sm-2">
+                <div class="card text-left">
+                    <div class="card-body">
+                        <h4 class="card-title">3D Image Gallery</h4>
+                        <a href="coke.html">
+                            <img class="card-img-top img-fluid img-thumbnail" src="gallery/assets/images/coke2.png" alt="Coca Cola">
+                        </a>
+                        <a href="sprite.html">
+                            <img class="card-img-top img-fluid img-thumbnail" src="gallery/assets/images/fanta.png" alt="Sprite">
+                        </a>
+                        <a href="pepper.html">
+                            <img class="card-img-top img-fluid img-thumbnail" src="gallery/assets/images/sprite1.png" alt="Dr Pepper">
+                        </a>
+                        <p class="card-text">3D images rendered</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coca Cola Info -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Coca Cola</h3>
+                        <p class="card-text">It was 1886, and in New York Harbour, workers were constructing the Statue
+                            of Liberty. Eight hundred miles away, another great American symbol was about to be
+                            unveiled. Like many people who change history, John Pemberton, an Atlanta pharmacist, was
+                            inspired by simple curiosity. One afternoon, he stirred up a fragrant, caramel-coloured
+                            liquid and, when it was done, he carried it a few doors down to Jacobs' Pharmacy. Here, the
+                            mixture was combined with carbonated water and sampled by customers who all agreed - this
+                            new drink was something special.
+                        </p>
+                        <a href="https://www.coca-cola.com/gb/en/offerings/vipizza" class="btn btn-primary">Check us out...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <nav class="navbar navbar-expand-sm footer">
+        <div class="container-fluid">
+            <div class="navbar-text float-left copyright">
+                <p><span class="align-baseline"></span>&copy 2024 Mobile Web 3D Applications</p>
+            </div>
+            <div class="navbar-text social">
+                <a href="#"><i class="fab fa-github-square fa-2x fa-pull-right"></i></a>
+                <a href="#"><i class="fab fa-twitter fa-2x fa-pull-right"></i></a>
+                <a href="#"><i class="fab fa-google-plus fa-2x fa-pull-right"></i></a>
+                <a href="#"><i class="fab fa-facebook-square fa-2x fa-pull-right"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About modal -->
+    <div class="modal fade" id="aboutModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">About 3D Apps</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p>3D Apps is a final year and postgraduate module focused on designing a 3D Website</p>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact modal -->
+    <div class="modal fade" id="contactModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">3D App Contact Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p>Abosede Olatunji, Email: A.Olatunji@sussex.ac.uk</p>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"
+        integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let isRotating = false;
+    
+        function toggleRotation() {
+            const clock = document.getElementById('clock');
+            const button = document.getElementById('animationButton');
+    
+            if (isRotating) {
+                // Stop the rotation
+                clock.setAttribute('enabled', 'false');
+                isRotating = false;
+                button.textContent = 'Animate';
+            } else {
+                // Start the rotation
+                clock.setAttribute('enabled', 'true');
+                isRotating = true;
+                button.textContent = 'Stop Animation';
+            }
+        }
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<X3D profile='Immersive' version='3.3'>
+    <Scene>
+        <Transform DEF='CocaColaTransform'>
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor='0.8 0.2 0.2'/>
+                </Appearance>
+                <Box/>
+            </Shape>
+        </Transform>
+        <TimeSensor DEF='Timer' cycleInterval='4' loop='true'/>
+        <PositionInterpolator DEF='PositionAnimator' key='0 0.5 1' keyValue='0 0 0  2 0 0  0 0 0'/>
+        <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='PositionAnimator' toField='set_fraction'/>
+        <ROUTE fromNode='PositionAnimator' fromField='value_changed' toNode='CocaColaTransform' toField='set_translation'/>
+    </Scene>
+</X3D>
